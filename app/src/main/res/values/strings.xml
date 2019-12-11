@@ -1,10 +1,13 @@
 <resources>
 	<string name="app_name">AcademyTlvMovies</string>
-	<string name="avengers_title">Avengers: Infinity War</string>
+	<!--	Details Activity	-->
 	<string name="released">Released:</string>
-	<string name="avengers_date">2018-01-01</string>
 	<string name="movie_header_description">Movie Header Image</string>
 	<string name="movie_poster_description">Movie Poster</string>
 	<string name="overview_title">Overview:</string>
 	<string name="watch_trailer_button">Watch Trailer</string>
+	<!--	Avengers Details	-->
+	<string name="avengers_title">Avengers: Infinity War</string>
+	<string name="avengers_date">2018-01-01</string>
+	<string name="avengers_overview">The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.</string>
 </resources>
