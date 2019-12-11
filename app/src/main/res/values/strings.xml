@@ -1,4 +1,10 @@
 <resources>
 	<string name="app_name">AcademyTlvMovies</string>
-	<string name="title">Android Academy Fundamentals Course 2019</string>
+	<string name="avengers_title">Avengers: Infinity War</string>
+	<string name="released">Released:</string>
+	<string name="avengers_date">2018-01-01</string>
+	<string name="movie_header_description">Movie Header Image</string>
+	<string name="movie_poster_description">Movie Poster</string>
+	<string name="overview_title">Overview:</string>
+	<string name="watch_trailer_button">Watch Trailer</string>
 </resources>
