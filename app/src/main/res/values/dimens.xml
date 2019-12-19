@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="text_title_size">20sp</dimen>
-    <dimen name="margin_horiz">10dp</dimen>
-    <dimen name="margin_vert">15dp</dimen>
     <dimen name="text_default_size">18sp</dimen>
+    <dimen name="text_small_size">17sp</dimen>
+    <dimen name="margin_small">10dp</dimen>
+    <dimen name="margin_medium">15dp</dimen>
+    <dimen name="li_movie_height">108dp</dimen>
 </resources>
