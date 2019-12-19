@@ -3,7 +3,8 @@
     <dimen name="text_title_size">20sp</dimen>
     <dimen name="text_default_size">18sp</dimen>
     <dimen name="text_small_size">17sp</dimen>
-    <dimen name="margin_small">10dp</dimen>
-    <dimen name="margin_medium">15dp</dimen>
-    <dimen name="li_movie_height">108dp</dimen>
+    <dimen name="margin_small">5dp</dimen>
+    <dimen name="margin_medium">10dp</dimen>
+    <dimen name="margin_large">15dp</dimen>
+    <dimen name="li_movie_height">128dp</dimen>
 </resources>

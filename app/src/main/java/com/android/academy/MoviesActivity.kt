@@ -19,79 +19,79 @@ class MoviesActivity : AppCompatActivity() {
     private fun loadMovies() {
         movies.add(
             MovieModel(
-                "Jurassic World - Fallen Kingdom",
+                getString(R.string.jurassic_world_title),
                 R.drawable.jurassic_world_poster,
-                "Description text is here...."
+                getString(R.string.jurassic_world_overview)
             )
         )
         movies.add(
             MovieModel(
-                "The Meg",
+                getString(R.string.the_meg_title),
                 R.drawable.the_meg_poster,
-                "Description text is here...."
+                getString(R.string.the_meg_overview)
             )
         )
         movies.add(
             MovieModel(
-                "Black Panther",
+                getString(R.string.black_panther_title),
                 R.drawable.black_panther_poster,
-                "Description text is here...."
+                getString(R.string.black_panther_overview)
             )
         )
         movies.add(
             MovieModel(
-                "Deadpool2",
+                getString(R.string.deadpool_title),
                 R.drawable.deadpool_2_poster,
-                "Description text is here...."
+                getString(R.string.deadpool_overview)
             )
         )
         movies.add(
             MovieModel(
-                "Guardians Of The Galaxy",
+                getString(R.string.guardians_galaxy_title),
                 R.drawable.guardians_galaxy_poster,
-                "Description text is here...."
+                getString(R.string.guardians_galaxy_overview)
             )
         )
         movies.add(
             MovieModel(
-                "Avengers - Infinity War",
+                getString(R.string.avengers_title),
                 R.drawable.avengers_poster,
-                "Description text is here...."
+                getString(R.string.avengers_overview)
             )
         )
         movies.add(
             MovieModel(
-                "Interstellar",
+                getString(R.string.interstellar_title),
                 R.drawable.interstellar_poster,
-                "Description text is here...."
+                getString(R.string.interstellar_overview)
             )
         )
         movies.add(
             MovieModel(
-                "Jurassic World - Fallen Kingdom",
+                getString(R.string.jurassic_world_title),
                 R.drawable.jurassic_world_poster,
-                "Description text is here...."
+                getString(R.string.jurassic_world_overview)
             )
         )
         movies.add(
             MovieModel(
-                "Ocean's 8",
+                getString(R.string.oceans_8_title),
                 R.drawable.oceans_8_poster,
-                "Description text is here...."
+                getString(R.string.oceans_8_overview)
             )
         )
         movies.add(
             MovieModel(
-                "The First Purge",
+                getString(R.string.the_first_purge_title),
                 R.drawable.the_first_purge_poster,
-                "Description text is here...."
+                getString(R.string.the_first_purge_overview)
             )
         )
         movies.add(
             MovieModel(
-                "Thor Ragnarok",
+                getString(R.string.thor_ragnarok_title),
                 R.drawable.thor_ragnarok_poster,
-                "Description text is here...."
+                getString(R.string.thor_ragnarok_overview)
             )
         )
     }

@@ -10,4 +10,31 @@
 	<string name="avengers_title">Avengers: Infinity War</string>
 	<string name="avengers_date">2018-01-01</string>
 	<string name="avengers_overview">The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.</string>
+	<!--	Black Panther Details	-->
+	<string name="black_panther_title">Black Panther</string>
+	<string name="black_panther_overview">T\'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country\'s past.</string>
+	<!--	Deadpool 2 Details	-->
+	<string name="deadpool_title">Deadpool 2</string>
+	<string name="deadpool_overview">Foul-mouthed mutant mercenary Wade Wilson (a.k.a. Deadpool), brings together a team of fellow mutant rogues to protect a young boy with supernatural abilities from the brutal, time-traveling cyborg Cable.</string>
+	<!--	Guardians of the Galaxy Details	-->
+	<string name="guardians_galaxy_title">Guradians Of The Galaxy</string>
+	<string name="guardians_galaxy_overview">Description text is here...</string>
+	<!--	Interstellar Details	-->
+	<string name="interstellar_title">Interstellar</string>
+	<string name="interstellar_overview">Description text is here...</string>
+	<!--	Jurassic World Details	-->
+	<string name="jurassic_world_title">Jurassic World - Fallen Kingdom</string>
+	<string name="jurassic_world_overview">Description text is here...</string>
+	<!--	Ocean's 8 Details	-->
+	<string name="oceans_8_title">Ocean\'s 8</string>
+	<string name="oceans_8_overview">Description text is here...</string>
+	<!--	The First Purge Details	-->
+	<string name="the_first_purge_title">The First Purge</string>
+	<string name="the_first_purge_overview">Description text is here...</string>
+	<!--	The Meg Details	-->
+	<string name="the_meg_title">The Meg</string>
+	<string name="the_meg_overview">Description text is here...</string>
+	<!--	Thor Ragnarok Details	-->
+	<string name="thor_ragnarok_title">Thor Ragnarok</string>
+	<string name="thor_ragnarok_overview">Description text is here...</string>
 </resources>
