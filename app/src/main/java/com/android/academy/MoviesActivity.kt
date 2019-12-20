@@ -2,10 +2,11 @@ package com.android.academy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_movies.*
 
-class MoviesActivity : AppCompatActivity() {
+class MoviesActivity : AppCompatActivity(), OnMovieClickListener {
 
     private val movies: MutableList<MovieModel> = mutableListOf()
 
@@ -98,9 +99,13 @@ class MoviesActivity : AppCompatActivity() {
 
     private fun initRecyclerView() {
         rvMoviesList.layoutManager = LinearLayoutManager(this)
-        val moviesAdapter = MoviesViewAdapter(this)
+        val moviesAdapter = MoviesViewAdapter(this, this)
         rvMoviesList.adapter = moviesAdapter
         moviesAdapter.setData(movies)
+    }
+
+    override fun onMovieClicked(movie: MovieModel) {
+        Toast.makeText(this, movie.name, Toast.LENGTH_SHORT).show()
     }
 
 }
