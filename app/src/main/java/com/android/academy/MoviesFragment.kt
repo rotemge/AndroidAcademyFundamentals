@@ -1,23 +1,37 @@
 package com.android.academy
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MoviesFragment : Fragment(), OnMovieClickListener {
 
     private val movies: MutableList<MovieModel> = mutableListOf()
+    private var listener: OnMovieClickListener? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_movies, container, false)
         loadMovies()
         initRecyclerView(view.findViewById(R.id.rvMoviesList))
         return view
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnMovieClickListener) {
+            listener = context
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
     }
 
     private fun loadMovies() {
@@ -110,8 +124,6 @@ class MoviesFragment : Fragment(), OnMovieClickListener {
     }
 
     override fun onMovieClicked(movie: MovieModel) {
-        context?.let {
-            Toast.makeText(it, movie.name, Toast.LENGTH_SHORT).show()
-        }
+        listener?.onMovieClicked(movie)
     }
 }
