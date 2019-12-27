@@ -4,7 +4,6 @@
     android:id="@+id/rvMoviesList"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MoviesActivity"
     tools:listitem="@layout/item_movie">
 
 </androidx.recyclerview.widget.RecyclerView>

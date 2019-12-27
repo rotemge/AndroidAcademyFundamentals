@@ -1,20 +1,24 @@
 package com.android.academy
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_movies.*
+import kotlinx.android.synthetic.main.fragment_movies.*
 
-class MoviesActivity : AppCompatActivity(), OnMovieClickListener {
+class MoviesFragment : Fragment(), OnMovieClickListener {
 
     private val movies: MutableList<MovieModel> = mutableListOf()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movies)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        val view =  inflater.inflate(R.layout.fragment_movies, container, false)
         loadMovies()
         initRecyclerView()
+        return view
     }
 
     private fun loadMovies() {
@@ -98,14 +102,17 @@ class MoviesActivity : AppCompatActivity(), OnMovieClickListener {
     }
 
     private fun initRecyclerView() {
-        rvMoviesList.layoutManager = LinearLayoutManager(this)
-        val moviesAdapter = MoviesViewAdapter(this, this)
-        rvMoviesList.adapter = moviesAdapter
-        moviesAdapter.setData(movies)
+        context?.let {
+            rvMoviesList.layoutManager = LinearLayoutManager(it)
+            val moviesAdapter = MoviesViewAdapter(it, this)
+            rvMoviesList.adapter = moviesAdapter
+            moviesAdapter.setData(movies)
+        }
     }
 
     override fun onMovieClicked(movie: MovieModel) {
-        Toast.makeText(this, movie.name, Toast.LENGTH_SHORT).show()
+        context?.let {
+            Toast.makeText(it, movie.name, Toast.LENGTH_SHORT).show()
+        }
     }
-
 }
