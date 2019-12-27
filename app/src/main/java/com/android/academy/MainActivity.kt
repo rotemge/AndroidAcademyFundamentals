@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
     }
 
     override fun onMovieClicked(movie: MovieModel) {
-        supportFragmentManager.beginTransaction().replace(R.id.activity_main_frame, DetailsFragment()).commit()
+        val detailsFragment = DetailsFragment.newInstance(movie)
+        supportFragmentManager.beginTransaction().replace(R.id.activity_main_frame, detailsFragment).commit()
     }
 }
