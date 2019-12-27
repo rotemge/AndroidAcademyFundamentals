@@ -7,17 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_movies.*
+import androidx.recyclerview.widget.RecyclerView
 
 class MoviesFragment : Fragment(), OnMovieClickListener {
 
     private val movies: MutableList<MovieModel> = mutableListOf()
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_movies, container, false)
         loadMovies()
-        initRecyclerView()
+        initRecyclerView(view.findViewById(R.id.rvMoviesList))
         return view
     }
 
@@ -101,11 +100,11 @@ class MoviesFragment : Fragment(), OnMovieClickListener {
         )
     }
 
-    private fun initRecyclerView() {
+    private fun initRecyclerView(rcvMoviesList: RecyclerView) {
         context?.let {
-            rvMoviesList.layoutManager = LinearLayoutManager(it)
+            rcvMoviesList.layoutManager = LinearLayoutManager(it)
             val moviesAdapter = MoviesViewAdapter(it, this)
-            rvMoviesList.adapter = moviesAdapter
+            rcvMoviesList.adapter = moviesAdapter
             moviesAdapter.setData(movies)
         }
     }
