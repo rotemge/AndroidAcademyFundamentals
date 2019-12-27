@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".DetailsActivity">
+        tools:context=".DetailsFragment">
 
         <ImageView
             android:id="@+id/movieHeader"
@@ -77,7 +77,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_large"
-            android:onClick="watchTrailer"
             android:text="@string/watch_trailer_button"
             app:layout_constraintStart_toStartOf="@+id/releasedTitle"
             app:layout_constraintTop_toBottomOf="@+id/releasedTitle" />
