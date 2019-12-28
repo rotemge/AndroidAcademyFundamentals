@@ -2,6 +2,7 @@ package com.android.academy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnMovieClickListener {
 
@@ -15,9 +16,15 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
     override fun onMovieClicked(movie: MovieModel) {
         val detailsFragment = DetailsFragment.newInstance(movie)
         supportFragmentManager
-            .beginTransaction()
-            .addToBackStack(null)
-            .replace(R.id.activity_main_frame, detailsFragment)
-            .commit()
+            .beginTransaction().apply {
+                if (activity_main_tablet_frame == null) {
+                    //Phone mode
+                    addToBackStack(null)
+                    replace(R.id.activity_main_frame, detailsFragment)
+                } else {
+                    // Wide screen mode
+                    replace(R.id.activity_main_tablet_frame, detailsFragment)
+                }
+            }.commit()
     }
 }
