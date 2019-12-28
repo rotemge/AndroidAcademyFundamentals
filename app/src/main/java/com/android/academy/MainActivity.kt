@@ -10,7 +10,9 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction().add(R.id.activity_main_frame, MoviesFragment()).commit()
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction().add(R.id.activity_main_frame, MoviesFragment()).commit()
+        }
     }
 
     override fun onMovieClicked(movie: MovieModel) {
