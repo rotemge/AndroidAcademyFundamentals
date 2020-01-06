@@ -27,6 +27,7 @@ class DetailsFragment : Fragment() {
 
     }
 
+    private lateinit var headerImage: ImageView
     private lateinit var posterImage: ImageView
     private lateinit var titleText: TextView
     private lateinit var releaseDateText: TextView
@@ -47,12 +48,16 @@ class DetailsFragment : Fragment() {
         titleText.text = movie.name
         overviewText.text = movie.overview
         posterImage.setImageResource(movie.imageRes)
+        // TODO header image
+        // TODO trailer link
+        // TODO release date
     }
 
     private fun initViews(view: View) {
         posterImage = view.findViewById(R.id.moviePoster)
         titleText = view.findViewById(R.id.movieTitle)
         releaseDateText = view.findViewById(R.id.releaseDate)
+        headerImage = view.findViewById(R.id.movieHeader)
         overviewText = view.findViewById(R.id.overviewContent)
         trailerButton = view.findViewById(R.id.watchTrailerBtn)
         trailerButton.setOnClickListener(::watchTrailer)
