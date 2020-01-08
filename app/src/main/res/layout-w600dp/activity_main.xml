@@ -11,8 +11,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.4"/>
 
-    <FrameLayout
-        android:id="@+id/activity_main_tablet_frame"
+    <fragment
+        android:id="@+id/activity_main_tablet_pager"
+        android:name="com.android.academy.DetailsViewPager"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         app:layout_constraintStart_toEndOf="@id/activity_main_frame"

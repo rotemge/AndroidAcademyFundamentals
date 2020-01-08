@@ -16,17 +16,18 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
     }
 
     override fun onMovieClicked(movie: MovieModel) {
-        val detailsFragment = DetailsViewPager.newInstance(MoviesContent.getIndexOfMovie(movie))
-        supportFragmentManager
-            .beginTransaction().apply {
-                if (activity_main_tablet_frame == null) {
-                    //Phone mode
-                    addToBackStack(null)
-                    replace(R.id.activity_main_frame, detailsFragment)
-                } else {
-                    // Wide screen mode
-                    replace(R.id.activity_main_tablet_frame, detailsFragment)
-                }
-            }.commit()
+        val movieIndex = MoviesContent.getIndexOfMovie(movie)
+        if (activity_main_tablet_pager == null) {
+            //Phone mode
+            val detailsFragment = DetailsViewPager.newInstance(movieIndex)
+            supportFragmentManager
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.activity_main_frame, detailsFragment)
+                .commit()
+        } else {
+            // Wide screen mode
+            (activity_main_tablet_pager as DetailsViewPager).moveToItem(movieIndex)
+        }
     }
 }

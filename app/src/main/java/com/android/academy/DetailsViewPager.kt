@@ -24,17 +24,23 @@ class DetailsViewPager: Fragment() {
 
     }
 
+    private lateinit var mViewPager: ViewPager2
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.view_pager_details, container, false)
-        val viewPager: ViewPager2 = view.findViewById(R.id.details_pager)
-        viewPager.adapter = MovieDetailsPagerAdapter(this)
+        mViewPager = view.findViewById(R.id.details_pager)
+        mViewPager.adapter = MovieDetailsPagerAdapter(this)
 
         val currentIndex: Int? = arguments?.getInt(INDEX_BUNDLE_KEY)
         currentIndex?.let {
-            viewPager.setCurrentItem(it, false)
+            mViewPager.setCurrentItem(it, false)
         }
 
         return view
+    }
+
+    fun moveToItem(index: Int) {
+        mViewPager.setCurrentItem(index, true)
     }
 
     private inner class MovieDetailsPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
