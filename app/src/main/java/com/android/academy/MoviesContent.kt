@@ -10,6 +10,8 @@ object MoviesContent {
 
     fun getMovie(position: Int) = movies[position]
 
+    fun getIndexOfMovie(movie: MovieModel) = movies.indexOf(movie)
+
     fun addMovie(movie: MovieModel) {
         movies.add(movie)
     }

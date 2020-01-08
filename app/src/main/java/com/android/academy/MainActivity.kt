@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
     }
 
     override fun onMovieClicked(movie: MovieModel) {
-        val detailsFragment = DetailsFragment.newInstance(movie)
+        val detailsFragment = DetailsViewPager.newInstance(MoviesContent.getIndexOfMovie(movie))
         supportFragmentManager
             .beginTransaction().apply {
                 if (activity_main_tablet_frame == null) {
