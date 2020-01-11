@@ -1,17 +1,31 @@
 package com.android.academy
 
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_async_counter.*
 
 class AsyncTaskActivity : AppCompatActivity(), IAsyncTaskEvents {
 
+    companion object {
+        private const val TASK_RUNNING_KEY = "unique_is_task_running_key"
+        private const val COUNTER_VALUE_KEY = "unique_counter_value_key"
+    }
+
     private var task: CounterAsyncTask? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_async_counter)
-        tvCounter.text = getString(R.string.async_task_greeting)
+
+        val isTaskRunning = savedInstanceState?.getBoolean(TASK_RUNNING_KEY, false) ?: false
+        if (isTaskRunning) {
+            task = CounterAsyncTask(this)
+            val value = savedInstanceState?.getString(COUNTER_VALUE_KEY, "")?.toIntOrNull()
+            task?.execute(value)
+        } else {
+            tvCounter.text = getString(R.string.async_task_greeting)
+        }
         setButtons()
     }
 
@@ -29,6 +43,13 @@ class AsyncTaskActivity : AppCompatActivity(), IAsyncTaskEvents {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        val isRunning = task?.status == AsyncTask.Status.RUNNING
+        outState.putBoolean(TASK_RUNNING_KEY, isRunning)
+        if (isRunning) outState.putString(COUNTER_VALUE_KEY, tvCounter.text.toString())
+        super.onSaveInstanceState(outState)
+    }
+
     override fun onPreExecute() {
 
     }
@@ -43,6 +64,12 @@ class AsyncTaskActivity : AppCompatActivity(), IAsyncTaskEvents {
     }
 
     override fun onCancel() {
+        task = null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        task?.cancel(true)
         task = null
     }
 
