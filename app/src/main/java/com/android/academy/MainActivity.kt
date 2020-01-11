@@ -1,5 +1,6 @@
 package com.android.academy
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -97,7 +98,10 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
-        R.id.action_async_task -> true
+        R.id.action_async_task -> {
+            startActivity(Intent(this, AsyncTaskActivity::class.java))
+            true
+        }
         R.id.action_thread_handler -> true
         else -> super.onOptionsItemSelected(item)
     }

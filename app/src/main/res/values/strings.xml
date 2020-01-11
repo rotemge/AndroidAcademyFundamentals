@@ -2,6 +2,12 @@
 	<string name="app_name">AcademyTlvMovies</string>
 	<string name="menu_async_task">Open Async Task Activity</string>
 	<string name="menu_thread_handler">Open Thread Handler Activity</string>
+	<!--	Async Counter	-->
+	<string name="counter_button_create">Create</string>
+	<string name="counter_button_start">Start</string>
+	<string name="counter_button_cancel">Cancel</string>
+	<string name="async_task_greeting">This is AsyncTask Activity</string>
+	<string name="async_task_created">Task Created</string>
 	<!--	Details Activity	-->
 	<string name="details_released_title">Released:</string>
 	<string name="details_header_description">Movie Header Image</string>
