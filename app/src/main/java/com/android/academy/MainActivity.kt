@@ -2,6 +2,8 @@ package com.android.academy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnMovieClickListener {
@@ -87,6 +89,17 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
                 getString(R.string.thor_ragnarok_overview)
             )
         )
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.action_async_task -> true
+        R.id.action_thread_handler -> true
+        else -> super.onOptionsItemSelected(item)
     }
 
     override fun onMovieClicked(movie: MovieModel) {

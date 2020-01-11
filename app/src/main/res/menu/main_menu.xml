@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_async_task"
+        android:title="@string/menu_async_task">
+    </item>
+    <item
+        android:id="@+id/action_thread_handler"
+        android:title="@string/menu_thread_handler">
+    </item>
+</menu>

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/movie_poster_description"
+        android:contentDescription="@string/details_poster_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
