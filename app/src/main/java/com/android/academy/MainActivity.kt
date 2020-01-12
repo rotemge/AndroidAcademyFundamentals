@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.android.academy.async_counter.AsyncTaskActivity
+import com.android.academy.async_counter.ThreadsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnMovieClickListener {
@@ -102,7 +104,10 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
             startActivity(Intent(this, AsyncTaskActivity::class.java))
             true
         }
-        R.id.action_thread_handler -> true
+        R.id.action_thread_handler -> {
+            startActivity(Intent(this, ThreadsActivity::class.java))
+            true
+        }
         else -> super.onOptionsItemSelected(item)
     }
 

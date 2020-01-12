@@ -1,18 +1,18 @@
-package com.android.academy
+package com.android.academy.async_counter
 
-import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.android.academy.R
 import kotlinx.android.synthetic.main.activity_async_counter.*
 
-class AsyncTaskActivity : AppCompatActivity(), IAsyncTaskEvents {
+class ThreadsActivity : AppCompatActivity(), IAsyncTaskEvents {
 
     companion object {
         private const val TASK_RUNNING_KEY = "unique_is_task_running_key"
         private const val COUNTER_VALUE_KEY = "unique_counter_value_key"
     }
 
-    private var task: CounterAsyncTask? = null
+    private var task: MySimpleAsyncTask? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +20,7 @@ class AsyncTaskActivity : AppCompatActivity(), IAsyncTaskEvents {
 
         val isTaskRunning = savedInstanceState?.getBoolean(TASK_RUNNING_KEY, false) ?: false
         if (isTaskRunning) {
-            task = CounterAsyncTask(this)
+            task = MySimpleAsyncTask(this)
             val value = savedInstanceState?.getString(COUNTER_VALUE_KEY, "")?.toIntOrNull()
             task?.execute(value)
         } else {
@@ -31,28 +31,26 @@ class AsyncTaskActivity : AppCompatActivity(), IAsyncTaskEvents {
 
     private fun setButtons() {
         btnCreate.setOnClickListener {
-            task?.cancel(true)
-            task = CounterAsyncTask(this)
+            task?.cancel()
+            task = MySimpleAsyncTask(this)
             tvCounter.text = getString(R.string.async_task_created)
         }
         btnStart.setOnClickListener {
             task?.execute()
         }
         btnCancel.setOnClickListener {
-            task?.cancel(true)
+            task?.cancel()
         }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        val isRunning = task?.status == AsyncTask.Status.RUNNING
+        val isRunning = !(task?.canceled ?: true)
         outState.putBoolean(TASK_RUNNING_KEY, isRunning)
         if (isRunning) outState.putString(COUNTER_VALUE_KEY, tvCounter.text.toString())
         super.onSaveInstanceState(outState)
     }
 
-    override fun onPreExecute() {
-
-    }
+    override fun onPreExecute() { }
 
     override fun onPostExecute(result: String) {
         tvCounter.text = result
@@ -69,7 +67,7 @@ class AsyncTaskActivity : AppCompatActivity(), IAsyncTaskEvents {
 
     override fun onDestroy() {
         super.onDestroy()
-        task?.cancel(true)
+        task?.cancel()
         task = null
     }
 
