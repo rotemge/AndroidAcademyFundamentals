@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.android.academy.async_counter.AsyncTaskActivity
 import com.android.academy.async_counter.ThreadsActivity
+import com.android.academy.bg_service.BGServiceActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnMovieClickListener {
@@ -106,6 +107,10 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
         }
         R.id.action_thread_handler -> {
             startActivity(Intent(this, ThreadsActivity::class.java))
+            true
+        }
+        R.id.action_background_service -> {
+            startActivity(Intent(this, BGServiceActivity::class.java))
             true
         }
         else -> super.onOptionsItemSelected(item)

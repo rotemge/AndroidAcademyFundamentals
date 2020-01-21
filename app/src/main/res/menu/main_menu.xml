@@ -8,4 +8,8 @@
         android:id="@+id/action_thread_handler"
         android:title="@string/menu_thread_handler">
     </item>
+    <item
+        android:id="@+id/action_background_service"
+        android:title="@string/menu_background_service">
+    </item>
 </menu>

@@ -2,12 +2,22 @@
 	<string name="app_name">AcademyTlvMovies</string>
 	<string name="menu_async_task">Open Async Task Activity</string>
 	<string name="menu_thread_handler">Open Thread Handler Activity</string>
+	<string name="menu_background_service">Open Background Service Activity</string>
 	<!--	Async Counter	-->
 	<string name="counter_button_create">Create</string>
 	<string name="counter_button_start">Start</string>
 	<string name="counter_button_cancel">Cancel</string>
 	<string name="async_task_greeting">This is AsyncTask Activity</string>
 	<string name="async_task_created">Task Created</string>
+	<!--	Services Activity	-->
+	<string name="service_progress_title">The Progress</string>
+	<string name="service_progress_template">%1$d%%</string>
+	<string name="button_start_service">Start Service</string>
+	<string name="button_start_intent_service">Start Intent Service</string>
+	<string name="msg_starting_service">Starting Service</string>
+	<string name="msg_finishing_service">Finishing Service %1$d</string>
+	<string name="msg_starting_intent_service">Starting IntentService</string>
+	<string name="msg_finishing_intent_service">Finishing IntentService</string>
 	<!--	Details Activity	-->
 	<string name="details_released_title">Released:</string>
 	<string name="details_header_description">Movie Header Image</string>
