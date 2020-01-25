@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_async_task"
-        android:title="@string/menu_async_task">
-    </item>
+        android:title="@string/menu_async_task"/>
     <item
         android:id="@+id/action_thread_handler"
-        android:title="@string/menu_thread_handler">
-    </item>
+        android:title="@string/menu_thread_handler"/>
     <item
         android:id="@+id/action_background_service"
-        android:title="@string/menu_background_service">
-    </item>
+        android:title="@string/menu_background_service"/>
+    <item
+        android:id="@+id/action_work_manager"
+        android:title="@string/menu_work_manager"/>
 </menu>

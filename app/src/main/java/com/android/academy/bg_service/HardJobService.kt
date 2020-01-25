@@ -3,7 +3,6 @@ package com.android.academy.bg_service
 import android.app.Service
 import android.content.Intent
 import android.os.*
-import android.widget.Toast
 import com.android.academy.R
 
 class HardJobService: Service() {

@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.academy">
 
-    <uses-permission
-        android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".bg_service.WorkManagerActivity"></activity>
         <activity android:name=".bg_service.BGServiceActivity" />
         <activity android:name=".async_counter.ThreadsActivity" />
         <activity android:name=".async_counter.AsyncTaskActivity" />

@@ -59,6 +59,7 @@ class BGServiceActivity : AppCompatActivity() {
     private fun killPreviousService() {
         currentService?.let {
             this.stopService(Intent(this, Class.forName(it.className)))
+            currentService = null
         }
     }
 

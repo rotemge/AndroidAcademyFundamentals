@@ -1,58 +1,68 @@
 <resources>
-	<string name="app_name">AcademyTlvMovies</string>
-	<string name="menu_async_task">Open Async Task Activity</string>
-	<string name="menu_thread_handler">Open Thread Handler Activity</string>
-	<string name="menu_background_service">Open Background Service Activity</string>
-	<!--	Async Counter	-->
-	<string name="counter_button_create">Create</string>
-	<string name="counter_button_start">Start</string>
-	<string name="counter_button_cancel">Cancel</string>
-	<string name="async_task_greeting">This is AsyncTask Activity</string>
-	<string name="async_task_created">Task Created</string>
-	<!--	Services Activity	-->
-	<string name="service_progress_title">The Progress</string>
-	<string name="service_progress_template">%1$d%%</string>
-	<string name="button_start_service">Start Service</string>
-	<string name="button_start_intent_service">Start Intent Service</string>
-	<string name="msg_starting_service">Starting Service</string>
-	<string name="msg_finishing_service">Finishing Service %1$d</string>
-	<string name="msg_starting_intent_service">Starting IntentService</string>
-	<string name="msg_finishing_intent_service">Finishing IntentService</string>
-	<!--	Details Activity	-->
-	<string name="details_released_title">Released:</string>
-	<string name="details_header_description">Movie Header Image</string>
-	<string name="details_poster_description">Movie Poster</string>
-	<string name="details_overview_title">Overview:</string>
-	<string name="details_watch_trailer">Watch Trailer</string>
-	<!--	Avengers Details	-->
-	<string name="avengers_title">Avengers: Infinity War</string>
-	<string name="avengers_date">2018-01-01</string>
-	<string name="avengers_overview">The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.</string>
-	<!--	Black Panther Details	-->
-	<string name="black_panther_title">Black Panther</string>
-	<string name="black_panther_overview">T\'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country\'s past.</string>
-	<!--	Deadpool 2 Details	-->
-	<string name="deadpool_title">Deadpool 2</string>
-	<string name="deadpool_overview">Foul-mouthed mutant mercenary Wade Wilson (a.k.a. Deadpool), brings together a team of fellow mutant rogues to protect a young boy with supernatural abilities from the brutal, time-traveling cyborg Cable.</string>
-	<!--	Guardians of the Galaxy Details	-->
-	<string name="guardians_galaxy_title">Guradians Of The Galaxy</string>
-	<string name="guardians_galaxy_overview">Description text is here...</string>
-	<!--	Interstellar Details	-->
-	<string name="interstellar_title">Interstellar</string>
-	<string name="interstellar_overview">Description text is here...</string>
-	<!--	Jurassic World Details	-->
-	<string name="jurassic_world_title">Jurassic World - Fallen Kingdom</string>
-	<string name="jurassic_world_overview">Description text is here...</string>
-	<!--	Ocean's 8 Details	-->
-	<string name="oceans_8_title">Ocean\'s 8</string>
-	<string name="oceans_8_overview">Description text is here...</string>
-	<!--	The First Purge Details	-->
-	<string name="the_first_purge_title">The First Purge</string>
-	<string name="the_first_purge_overview">Description text is here...</string>
-	<!--	The Meg Details	-->
-	<string name="the_meg_title">The Meg</string>
-	<string name="the_meg_overview">Description text is here...</string>
-	<!--	Thor Ragnarok Details	-->
-	<string name="thor_ragnarok_title">Thor Ragnarok</string>
-	<string name="thor_ragnarok_overview">Description text is here...</string>
+    <string name="app_name">AcademyTlvMovies</string>
+    <string name="menu_async_task">Open Async Task Activity</string>
+    <string name="menu_thread_handler">Open Thread Handler Activity</string>
+    <string name="menu_background_service">Open Background Service Activity</string>
+    <string name="menu_work_manager">Open Work Manager Activity</string>
+    <!--	Async Counter	-->
+    <string name="counter_button_create">Create</string>
+    <string name="counter_button_start">Start</string>
+    <string name="counter_button_cancel">Cancel</string>
+    <string name="async_task_greeting">This is AsyncTask Activity</string>
+    <string name="async_task_created">Task Created</string>
+    <!--	Services Activity	-->
+    <string name="service_progress_title">The Progress</string>
+    <string name="service_progress_template">%1$d%%</string>
+    <string name="button_start_service">Start Service</string>
+    <string name="button_start_intent_service">Start Intent Service</string>
+    <string name="msg_starting_service">Starting Service</string>
+    <string name="msg_finishing_service">Finishing Service %1$d</string>
+    <string name="msg_starting_intent_service">Starting IntentService</string>
+    <string name="msg_finishing_intent_service">Finishing IntentService</string>
+    <!--    Work Manager Activity    -->
+    <string name="switch_requires_network">Requires Network</string>
+    <string name="switch_requires_charging">Requires Charging</string>
+    <string name="switch_requires_battery">Requires Battery Not Low</string>
+    <string name="button_enqueue_work">Enqueue Work</string>
+    <string name="button_cancel_work">Cancel Work</string>
+    <string name="msg_starting_worker_job">Starting Worker Job</string>
+    <string name="msg_stopped_worker_job">Worker Job Stopped</string>
+    <string name="msg_finishing_worker_job">Finishing Worker Job</string>
+    <!--	Details Activity	-->
+    <string name="details_released_title">Released:</string>
+    <string name="details_header_description">Movie Header Image</string>
+    <string name="details_poster_description">Movie Poster</string>
+    <string name="details_overview_title">Overview:</string>
+    <string name="details_watch_trailer">Watch Trailer</string>
+    <!--	Avengers Details	-->
+    <string name="avengers_title">Avengers: Infinity War</string>
+    <string name="avengers_date">2018-01-01</string>
+    <string name="avengers_overview">The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.</string>
+    <!--	Black Panther Details	-->
+    <string name="black_panther_title">Black Panther</string>
+    <string name="black_panther_overview">T\'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country\'s past.</string>
+    <!--	Deadpool 2 Details	-->
+    <string name="deadpool_title">Deadpool 2</string>
+    <string name="deadpool_overview">Foul-mouthed mutant mercenary Wade Wilson (a.k.a. Deadpool), brings together a team of fellow mutant rogues to protect a young boy with supernatural abilities from the brutal, time-traveling cyborg Cable.</string>
+    <!--	Guardians of the Galaxy Details	-->
+    <string name="guardians_galaxy_title">Guradians Of The Galaxy</string>
+    <string name="guardians_galaxy_overview">Description text is here...</string>
+    <!--	Interstellar Details	-->
+    <string name="interstellar_title">Interstellar</string>
+    <string name="interstellar_overview">Description text is here...</string>
+    <!--	Jurassic World Details	-->
+    <string name="jurassic_world_title">Jurassic World - Fallen Kingdom</string>
+    <string name="jurassic_world_overview">Description text is here...</string>
+    <!--	Ocean's 8 Details	-->
+    <string name="oceans_8_title">Ocean\'s 8</string>
+    <string name="oceans_8_overview">Description text is here...</string>
+    <!--	The First Purge Details	-->
+    <string name="the_first_purge_title">The First Purge</string>
+    <string name="the_first_purge_overview">Description text is here...</string>
+    <!--	The Meg Details	-->
+    <string name="the_meg_title">The Meg</string>
+    <string name="the_meg_overview">Description text is here...</string>
+    <!--	Thor Ragnarok Details	-->
+    <string name="thor_ragnarok_title">Thor Ragnarok</string>
+    <string name="thor_ragnarok_overview">Description text is here...</string>
 </resources>

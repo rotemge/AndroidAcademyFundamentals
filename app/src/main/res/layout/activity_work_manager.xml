@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".bg_service.BGServiceActivity">
+
+    <LinearLayout
+        android:id="@+id/progress_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/switches_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/service_progress_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:text="@string/service_progress_title" />
+
+        <TextView
+            android:id="@+id/tvServiceProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@android:color/secondary_text_light"
+            android:textSize="16sp"
+            tools:text="40%" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/switches_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        app:layout_constraintBottom_toTopOf="@+id/btns_container"
+        app:layout_constraintTop_toBottomOf="@+id/progress_container">
+
+        <Switch
+            android:id="@+id/networkSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/switch_requires_network" />
+        <Switch
+            android:id="@+id/chargingSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/switch_requires_charging" />
+        <Switch
+            android:id="@+id/batterySwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/switch_requires_battery" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btns_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switches_container">
+
+        <Button
+            android:id="@+id/btnEnqueueWork"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_weight="1"
+            android:text="@string/button_enqueue_work" />
+
+        <Button
+            android:id="@+id/btnCancelWork"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_weight="1"
+            android:text="@string/button_cancel_work" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
