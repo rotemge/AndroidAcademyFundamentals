@@ -26,13 +26,13 @@ class HardWorker(context: Context, workerParams: WorkerParameters) :
         return Result.success()
     }
 
-    fun broadcastProgress(progress: Int) {
+    private fun broadcastProgress(progress: Int) {
         val intent = Intent(WorkManagerActivity.PROGRESS_UPDATE_ACTION)
         intent.putExtra(WorkManagerActivity.PROGRESS_VALUE_KEY, progress)
         applicationContext.sendBroadcast(intent)
     }
 
-    fun broadcastStatus(status: String) {
+    private fun broadcastStatus(status: String) {
         val intent = Intent(WorkManagerActivity.PROGRESS_UPDATE_ACTION)
         intent.putExtra(WorkManagerActivity.WORKER_STATUS, status)
         applicationContext.sendBroadcast(intent)

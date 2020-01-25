@@ -73,7 +73,7 @@ class WorkManagerActivity : AppCompatActivity() {
         .setConstraints(constraints)
         .build()
 
-    fun cancelCurrentWork() {
+    private fun cancelCurrentWork() {
         currentWork?.let {
             WorkManager.getInstance(this).cancelWorkById(it)
             currentWork = null
