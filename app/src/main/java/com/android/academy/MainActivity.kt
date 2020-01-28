@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
     }
 
     private fun loadMovies() {
-        RestClient.moviesClient.loadPopularMovies().enqueue(object: Callback<MoviesListResult> {
+        RestClient.moviesClient.loadPopularMovies().enqueue(object : Callback<MoviesListResult> {
             override fun onFailure(call: Call<MoviesListResult>, t: Throwable) {
                 Log.e(ACTIVITY_TAG, "Could not load movies", t)
             }
