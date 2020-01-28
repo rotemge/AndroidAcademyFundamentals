@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.squareup.picasso.Picasso
 
 class DetailsFragment : Fragment() {
 
@@ -47,10 +48,10 @@ class DetailsFragment : Fragment() {
     private fun loadMovie(movie: MovieModel) {
         titleText.text = movie.name
         overviewText.text = movie.overview
-        posterImage.setImageResource(movie.imageRes)
-        // TODO header image
+        Picasso.get().load(movie.posterImage).into(posterImage) //.placeholder(R.drawable.my_place_holder_image)
+        Picasso.get().load(movie.headerImage).into(headerImage) //.placeholder(R.drawable.my_place_holder_image)
         // TODO trailer link
-        // TODO release date
+        releaseDateText.text = movie.releaseDate
     }
 
     private fun initViews(view: View) {

@@ -1,10 +1,13 @@
 package com.android.academy
 
+import com.android.academy.networking.MoviesListResult
+import com.android.academy.networking.toMovieModel
+
 object MoviesContent {
 
     private val movies: MutableList<MovieModel> = mutableListOf()
 
-    fun getMovies(): List<MovieModel> = movies
+    fun getMovies(): List<MovieModel> = movies.toList()
 
     fun getCount(): Int = movies.size
 
@@ -12,8 +15,11 @@ object MoviesContent {
 
     fun getIndexOfMovie(movie: MovieModel) = movies.indexOf(movie)
 
-    fun addMovie(movie: MovieModel) {
-        movies.add(movie)
+    fun fromResults(moviesResult: MoviesListResult) {
+        movies.clear()
+        moviesResult.results.forEach {
+            movies.add(it.toMovieModel())
+        }
     }
 
 }

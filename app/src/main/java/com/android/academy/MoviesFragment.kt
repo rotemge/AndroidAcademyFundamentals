@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 class MoviesFragment : Fragment(), OnMovieClickListener {
 
     private var listener: OnMovieClickListener? = null
+    private var moviesAdapter: MoviesViewAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -32,12 +33,16 @@ class MoviesFragment : Fragment(), OnMovieClickListener {
         listener = null
     }
 
+    fun updateList() {
+        moviesAdapter?.setData(MoviesContent.getMovies())
+    }
+
     private fun initRecyclerView(rcvMoviesList: RecyclerView) {
         context?.let {
             rcvMoviesList.layoutManager = LinearLayoutManager(it)
-            val moviesAdapter = MoviesViewAdapter(it, this)
+            moviesAdapter = MoviesViewAdapter(it, this)
             rcvMoviesList.adapter = moviesAdapter
-            moviesAdapter.setData(MoviesContent.getMovies())
+            moviesAdapter?.setData(MoviesContent.getMovies())
         }
     }
 

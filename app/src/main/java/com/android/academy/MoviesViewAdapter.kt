@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 class MoviesViewAdapter(context: Context, private val movieClickListener: OnMovieClickListener) :
@@ -47,7 +48,7 @@ class MoviesViewAdapter(context: Context, private val movieClickListener: OnMovi
         }
 
         fun bind(movieModel: MovieModel) {
-            ivImage.setImageResource(movieModel.imageRes)
+            Picasso.get().load(movieModel.posterImage).into(ivImage) //.placeholder(R.drawable.my_place_holder_image)
             tvTitle.text = movieModel.name
             tvOverview.text = movieModel.overview
             this.movieModel = movieModel
@@ -62,9 +63,11 @@ class MoviesViewAdapter(context: Context, private val movieClickListener: OnMovi
         }
 
         override fun areContentsTheSame(oldItem: MovieModel, newItem: MovieModel): Boolean {
-            return oldItem.imageRes == newItem.imageRes
-                    && oldItem.name == newItem.name
+            return oldItem.name == newItem.name
                     && oldItem.overview == newItem.overview
+                    && oldItem.releaseDate == newItem.releaseDate
+                    && oldItem.posterImage == newItem.posterImage
+                    && oldItem.headerImage == newItem.headerImage
 
         }
     }

@@ -1,17 +1,28 @@
 package com.android.academy
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import com.android.academy.async_counter.AsyncTaskActivity
 import com.android.academy.async_counter.ThreadsActivity
 import com.android.academy.bg_service.BGServiceActivity
 import com.android.academy.bg_service.WorkManagerActivity
+import com.android.academy.networking.MoviesListResult
+import com.android.academy.networking.RestClient
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), OnMovieClickListener {
+
+    companion object {
+        private val ACTIVITY_TAG = MainActivity::class.java.simpleName
+        private const val MOVIES_FRAGMENT_TAG = "MOVIES_FRAGMENT_TAG"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,81 +30,22 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
 
         if (savedInstanceState == null) {
             loadMovies()
-            supportFragmentManager.beginTransaction().add(R.id.activity_main_frame, MoviesFragment()).commit()
+            supportFragmentManager.beginTransaction().add(R.id.activity_main_frame, MoviesFragment(), MOVIES_FRAGMENT_TAG).commit()
         }
     }
 
     private fun loadMovies() {
-        MoviesContent.addMovie(
-            MovieModel(
-                getString(R.string.jurassic_world_title),
-                R.drawable.jurassic_world_poster,
-                getString(R.string.jurassic_world_overview)
-            )
-        )
-        MoviesContent.addMovie(
-            MovieModel(
-                getString(R.string.the_meg_title),
-                R.drawable.the_meg_poster,
-                getString(R.string.the_meg_overview)
-            )
-        )
-        MoviesContent.addMovie(
-            MovieModel(
-                getString(R.string.black_panther_title),
-                R.drawable.black_panther_poster,
-                getString(R.string.black_panther_overview)
-            )
-        )
-        MoviesContent.addMovie(
-            MovieModel(
-                getString(R.string.deadpool_title),
-                R.drawable.deadpool_2_poster,
-                getString(R.string.deadpool_overview)
-            )
-        )
-        MoviesContent.addMovie(
-            MovieModel(
-                getString(R.string.guardians_galaxy_title),
-                R.drawable.guardians_galaxy_poster,
-                getString(R.string.guardians_galaxy_overview)
-            )
-        )
-        MoviesContent.addMovie(
-            MovieModel(
-                getString(R.string.avengers_title),
-                R.drawable.avengers_poster,
-                getString(R.string.avengers_overview)
-            )
-        )
-        MoviesContent.addMovie(
-            MovieModel(
-                getString(R.string.interstellar_title),
-                R.drawable.interstellar_poster,
-                getString(R.string.interstellar_overview)
-            )
-        )
-        MoviesContent.addMovie(
-            MovieModel(
-                getString(R.string.oceans_8_title),
-                R.drawable.oceans_8_poster,
-                getString(R.string.oceans_8_overview)
-            )
-        )
-        MoviesContent.addMovie(
-            MovieModel(
-                getString(R.string.the_first_purge_title),
-                R.drawable.the_first_purge_poster,
-                getString(R.string.the_first_purge_overview)
-            )
-        )
-        MoviesContent.addMovie(
-            MovieModel(
-                getString(R.string.thor_ragnarok_title),
-                R.drawable.thor_ragnarok_poster,
-                getString(R.string.thor_ragnarok_overview)
-            )
-        )
+        RestClient.moviesClient.loadPopularMovies().enqueue(object: Callback<MoviesListResult> {
+            override fun onFailure(call: Call<MoviesListResult>, t: Throwable) {
+                Log.e(ACTIVITY_TAG, "Could not load movies", t)
+            }
+
+            override fun onResponse(call: Call<MoviesListResult>, response: Response<MoviesListResult>) {
+                response.body()?.let(MoviesContent::fromResults)
+                val moviesFragment = supportFragmentManager.findFragmentByTag(MOVIES_FRAGMENT_TAG) as MoviesFragment?
+                moviesFragment?.updateList()
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
