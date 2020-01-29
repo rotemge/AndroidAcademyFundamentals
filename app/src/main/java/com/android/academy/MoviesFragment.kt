@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_movies.*
 
 class MoviesFragment : Fragment(), OnMovieClickListener {
 
@@ -35,6 +36,7 @@ class MoviesFragment : Fragment(), OnMovieClickListener {
 
     fun updateList() {
         moviesAdapter?.setData(MoviesContent.getMovies())
+        moviesProgress.visibility = View.GONE
     }
 
     private fun initRecyclerView(rcvMoviesList: RecyclerView) {
@@ -42,7 +44,6 @@ class MoviesFragment : Fragment(), OnMovieClickListener {
             rcvMoviesList.layoutManager = LinearLayoutManager(it)
             moviesAdapter = MoviesViewAdapter(it, this)
             rcvMoviesList.adapter = moviesAdapter
-            moviesAdapter?.setData(MoviesContent.getMovies())
         }
     }
 

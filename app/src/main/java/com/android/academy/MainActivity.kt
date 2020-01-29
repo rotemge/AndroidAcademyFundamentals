@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.academy.async_counter.AsyncTaskActivity
 import com.android.academy.async_counter.ThreadsActivity
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
     private fun loadMovies() {
         RestClient.moviesClient.loadPopularMovies().enqueue(object : Callback<MoviesListResult> {
             override fun onFailure(call: Call<MoviesListResult>, t: Throwable) {
-                Log.e(ACTIVITY_TAG, "Could not load movies", t)
+                Toast.makeText(this@MainActivity, "Could not load movies", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<MoviesListResult>, response: Response<MoviesListResult>) {
