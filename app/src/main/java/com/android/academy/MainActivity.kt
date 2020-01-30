@@ -85,6 +85,11 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
             startActivity(Intent(this, WorkManagerActivity::class.java))
             true
         }
+        R.id.action_delete_movies_db -> {
+            AppDatabase.getInstance(this)?.movieDao()?.deleteAll()
+            Toast.makeText(this, "Deleting movies list from DB", Toast.LENGTH_SHORT).show()
+            true
+        }
         else -> super.onOptionsItemSelected(item)
     }
 
@@ -103,4 +108,5 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
             (activity_main_tablet_pager as DetailsViewPager).moveToItem(movieIndex)
         }
     }
+
 }
