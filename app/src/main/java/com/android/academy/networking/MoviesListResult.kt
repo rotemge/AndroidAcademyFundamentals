@@ -33,8 +33,9 @@ fun MovieResult.toMovieModel(): MovieModel {
     return MovieModel(
         id,
         title,
-        baseUrl + fileSize + posterPath,
         overview,
+        popularity,
+        baseUrl + fileSize + posterPath,
         baseUrl + fileSize + backdropPath,
         releaseDate
     )

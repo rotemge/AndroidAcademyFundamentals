@@ -15,6 +15,11 @@ object MoviesContent {
 
     fun getIndexOfMovie(movie: MovieModel) = movies.indexOf(movie)
 
+    fun fromList(moviesList: List<MovieModel>) {
+        movies.clear()
+        movies.addAll(moviesList)
+    }
+
     fun fromResults(moviesResult: MoviesListResult) {
         movies.clear()
         moviesResult.results.forEach {

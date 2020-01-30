@@ -2,7 +2,6 @@ package com.android.academy
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -11,6 +10,7 @@ import com.android.academy.async_counter.AsyncTaskActivity
 import com.android.academy.async_counter.ThreadsActivity
 import com.android.academy.bg_service.BGServiceActivity
 import com.android.academy.bg_service.WorkManagerActivity
+import com.android.academy.database.AppDatabase
 import com.android.academy.networking.MoviesListResult
 import com.android.academy.networking.RestClient
 import kotlinx.android.synthetic.main.activity_main.*
@@ -30,23 +30,37 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            loadMovies()
             supportFragmentManager.beginTransaction().add(R.id.activity_main_frame, MoviesFragment(), MOVIES_FRAGMENT_TAG).commit()
+            loadMovies()
         }
     }
 
     private fun loadMovies() {
+        val cachedMovies = AppDatabase.getInstance(this)?.movieDao()?.getAll()
+        if (!cachedMovies.isNullOrEmpty()) {
+            MoviesContent.fromList(cachedMovies)
+            findMoviesFragment()?.updateList()
+        }
+
+
         RestClient.moviesClient.loadPopularMovies().enqueue(object : Callback<MoviesListResult> {
             override fun onFailure(call: Call<MoviesListResult>, t: Throwable) {
                 Toast.makeText(this@MainActivity, "Could not load movies", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<MoviesListResult>, response: Response<MoviesListResult>) {
-                response.body()?.let(MoviesContent::fromResults)
-                val moviesFragment = supportFragmentManager.findFragmentByTag(MOVIES_FRAGMENT_TAG) as MoviesFragment?
-                moviesFragment?.updateList()
+                if (response.isSuccessful) {
+                    response.body()?.let(MoviesContent::fromResults)
+                    findMoviesFragment()?.updateList()
+                    AppDatabase.getInstance(this@MainActivity)?.movieDao()?.deleteAll()
+                    AppDatabase.getInstance(this@MainActivity)?.movieDao()?.insertAll(MoviesContent.getMovies())
+                }
             }
         })
+    }
+
+    private fun findMoviesFragment(): MoviesFragment? {
+        return supportFragmentManager.findFragmentByTag(MOVIES_FRAGMENT_TAG) as MoviesFragment?
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,11 @@ class MoviesFragment : Fragment(), OnMovieClickListener {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        updateList()
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnMovieClickListener) {
@@ -36,7 +42,9 @@ class MoviesFragment : Fragment(), OnMovieClickListener {
 
     fun updateList() {
         moviesAdapter?.setData(MoviesContent.getMovies())
-        moviesProgress.visibility = View.GONE
+        if (MoviesContent.getCount() > 0) {
+            view?.findViewById<ProgressBar>(R.id.moviesProgress)?.visibility = View.GONE
+        }
     }
 
     private fun initRecyclerView(rcvMoviesList: RecyclerView) {
