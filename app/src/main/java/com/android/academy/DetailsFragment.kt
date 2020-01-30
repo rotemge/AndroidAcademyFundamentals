@@ -11,8 +11,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.android.academy.database.AppDatabase
 import com.android.academy.networking.RestClient
 import com.android.academy.networking.VideosListResult
+import com.android.academy.networking.toVideoModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_details.*
 import retrofit2.Call
@@ -72,8 +74,14 @@ class DetailsFragment : Fragment() {
     }
 
     private fun watchTrailer(button: View) {
-        val movie = movieModel
-        if (movie != null) {
+        val movie = movieModel ?: return
+        context?.let {
+            val videoDao = AppDatabase.getInstance(it)?.videoDao()
+            val videoModel = videoDao?.getVideo(movie.id)
+            if (videoModel != null) {
+                playTrailer(videoModel.key)
+                return
+            }
             trailerProgress.visibility = View.VISIBLE
             RestClient.moviesClient.loadMovieTrailer(movie.id).enqueue(object : Callback<VideosListResult> {
                 override fun onFailure(call: Call<VideosListResult>, t: Throwable) {
@@ -83,15 +91,22 @@ class DetailsFragment : Fragment() {
 
                 override fun onResponse(call: Call<VideosListResult>, response: Response<VideosListResult>) {
                     trailerProgress.visibility = View.GONE
-                    response.body()?.results?.firstOrNull()?.let {
-                        val url = "https://www.youtube.com/watch?v=${it.key}"
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                        startActivity(intent)
+                    val video = response.body()?.toVideoModel()
+                    if (video != null) {
+                        videoDao?.insert(video)
+                        playTrailer(video.key)
+                    } else {
+                        Toast.makeText(it, "Could not load trailer", Toast.LENGTH_SHORT).show()
                     }
                 }
-
             })
         }
+    }
+
+    private fun playTrailer(key: String) {
+        val url = "https://www.youtube.com/watch?v=${key}"
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
     }
 
 }

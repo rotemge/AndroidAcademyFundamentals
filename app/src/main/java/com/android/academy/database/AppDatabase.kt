@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.*
 import com.android.academy.MovieModel
 
-@Database(entities = [MovieModel::class], version = 1)
+@Database(entities = [MovieModel::class, VideoModel::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
 
     companion object {
@@ -31,5 +31,6 @@ abstract class AppDatabase : RoomDatabase() {
     }
 
     abstract fun movieDao(): MovieDao?
+    abstract fun videoDao(): VideoDao?
 
 }
