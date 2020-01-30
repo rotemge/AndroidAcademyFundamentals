@@ -20,7 +20,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/avengers_header" />
+            tools:src="@drawable/header_placeholder" />
 
         <ImageView
             android:id="@+id/moviePoster"
@@ -32,7 +32,7 @@
             android:contentDescription="@string/details_poster_description"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movieHeader"
-            app:srcCompat="@drawable/avengers_poster" />
+            tools:src="@drawable/poster_placeholder" />
 
         <TextView
             android:id="@+id/movieTitle"
@@ -41,14 +41,14 @@
             android:layout_marginStart="@dimen/margin_medium"
             android:layout_marginTop="@dimen/margin_large"
             android:layout_marginEnd="@dimen/margin_medium"
-            android:text="@string/avengers_title"
             android:textAlignment="viewStart"
             android:textColor="@color/purple"
             android:textSize="@dimen/text_title_size"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/moviePoster"
-            app:layout_constraintTop_toBottomOf="@+id/movieHeader" />
+            app:layout_constraintTop_toBottomOf="@+id/movieHeader"
+            tools:text="Avengers: Infinity War" />
 
         <TextView
             android:id="@+id/releasedTitle"
@@ -66,11 +66,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_medium"
-            android:text="@string/avengers_date"
             android:textColor="@android:color/black"
             android:textSize="@dimen/text_default_size"
             app:layout_constraintStart_toEndOf="@+id/releasedTitle"
-            app:layout_constraintTop_toBottomOf="@+id/movieTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/movieTitle"
+            tools:text="2018-01-01" />
 
         <Button
             android:id="@+id/watchTrailerBtn"
@@ -87,10 +87,10 @@
             android:layout_height="0dp"
             android:indeterminate="true"
             android:padding="@dimen/margin_medium"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/watchTrailerBtn"
             app:layout_constraintStart_toEndOf="@+id/watchTrailerBtn"
-            app:layout_constraintTop_toTopOf="@+id/watchTrailerBtn"
-            android:visibility="gone"/>
+            app:layout_constraintTop_toTopOf="@+id/watchTrailerBtn" />
 
         <TextView
             android:id="@+id/overviewTitle"
@@ -110,7 +110,6 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_medium"
             android:layout_marginBottom="@dimen/margin_large"
-            android:text="@string/avengers_overview"
             android:textSize="@dimen/text_small_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

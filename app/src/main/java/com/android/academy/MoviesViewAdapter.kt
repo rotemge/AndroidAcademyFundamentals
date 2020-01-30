@@ -48,7 +48,7 @@ class MoviesViewAdapter(context: Context, private val movieClickListener: OnMovi
         }
 
         fun bind(movieModel: MovieModel) {
-            Picasso.get().load(movieModel.posterImage).into(ivImage) //.placeholder(R.drawable.my_place_holder_image)
+            Picasso.get().load(movieModel.posterImage).placeholder(R.drawable.poster_placeholder).into(ivImage)
             tvTitle.text = movieModel.name
             tvOverview.text = movieModel.overview
             this.movieModel = movieModel

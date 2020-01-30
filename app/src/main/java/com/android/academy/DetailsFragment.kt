@@ -58,9 +58,9 @@ class DetailsFragment : Fragment() {
     private fun loadMovie(movie: MovieModel) {
         titleText.text = movie.name
         overviewText.text = movie.overview
-        Picasso.get().load(movie.posterImage).into(posterImage) //.placeholder(R.drawable.my_place_holder_image)
-        Picasso.get().load(movie.headerImage).into(headerImage) //.placeholder(R.drawable.my_place_holder_image)
         releaseDateText.text = movie.releaseDate
+        Picasso.get().load(movie.posterImage).placeholder(R.drawable.poster_placeholder).into(posterImage)
+        Picasso.get().load(movie.headerImage).placeholder(R.drawable.header_placeholder).into(headerImage)
     }
 
     private fun initViews(view: View) {
