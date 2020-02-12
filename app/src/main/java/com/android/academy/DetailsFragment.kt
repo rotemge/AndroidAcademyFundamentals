@@ -6,12 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.android.academy.database.AppDatabase
+import com.android.academy.download.DownloadActivity
 import com.android.academy.networking.RestClient
 import com.android.academy.networking.VideosListResult
 import com.android.academy.networking.toVideoModel
@@ -38,6 +36,7 @@ class DetailsFragment : Fragment() {
     }
 
     private lateinit var headerImage: ImageView
+    private lateinit var downloadButton: ImageButton
     private lateinit var posterImage: ImageView
     private lateinit var titleText: TextView
     private lateinit var releaseDateText: TextView
@@ -71,6 +70,8 @@ class DetailsFragment : Fragment() {
         overviewText = view.findViewById(R.id.overviewContent)
         trailerButton = view.findViewById(R.id.watchTrailerBtn)
         trailerButton.setOnClickListener(::watchTrailer)
+        downloadButton = view.findViewById(R.id.downloadImageBtn)
+        downloadButton.setOnClickListener(::downloadImage)
     }
 
     private fun watchTrailer(button: View) {
@@ -107,6 +108,13 @@ class DetailsFragment : Fragment() {
         val url = "https://www.youtube.com/watch?v=${key}"
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent)
+    }
+
+    private fun downloadImage(button: View) {
+        val movie = movieModel ?: return
+        context?.let {
+            DownloadActivity.startActivity(it, movie)
+        }
     }
 
 }

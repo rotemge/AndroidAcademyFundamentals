@@ -22,6 +22,16 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/header_placeholder" />
 
+        <ImageButton
+            android:id="@+id/downloadImageBtn"
+            style="@android:style/Widget.Material.ImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/download_image_icon"
+            android:src="@android:drawable/ic_menu_save"
+            app:layout_constraintBottom_toBottomOf="@+id/movieHeader"
+            app:layout_constraintEnd_toEndOf="@+id/movieHeader" />
+
         <ImageView
             android:id="@+id/moviePoster"
             android:layout_width="130dp"
