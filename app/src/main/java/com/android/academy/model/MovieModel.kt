@@ -1,4 +1,4 @@
-package com.android.academy
+package com.android.academy.model
 
 import android.os.Parcelable
 import androidx.room.Entity

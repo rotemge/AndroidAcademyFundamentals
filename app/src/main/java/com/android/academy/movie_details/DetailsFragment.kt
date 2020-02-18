@@ -1,4 +1,4 @@
-package com.android.academy
+package com.android.academy.movie_details
 
 import android.content.Intent
 import android.net.Uri
@@ -6,18 +6,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.android.academy.database.AppDatabase
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.android.academy.R
 import com.android.academy.download.DownloadActivity
-import com.android.academy.networking.RestClient
-import com.android.academy.networking.VideosListResult
-import com.android.academy.networking.toVideoModel
+import com.android.academy.model.MovieModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_details.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class DetailsFragment : Fragment() {
 
@@ -35,6 +35,7 @@ class DetailsFragment : Fragment() {
 
     }
 
+    private lateinit var detailsViewModel: DetailsViewModel
     private lateinit var headerImage: ImageView
     private lateinit var downloadButton: ImageButton
     private lateinit var posterImage: ImageView
@@ -44,6 +45,12 @@ class DetailsFragment : Fragment() {
     private lateinit var overviewText: TextView
     private var movieModel: MovieModel? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        detailsViewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_details, container, false)
         initViews(view)
@@ -52,6 +59,11 @@ class DetailsFragment : Fragment() {
         movieModel?.let(::loadMovie)
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        detailsViewModel.loadingLiveData().observe(viewLifecycleOwner, Observer(::showButtonLoading))
+        detailsViewModel.trailerKeyLiveData().observe(viewLifecycleOwner, Observer(::playTrailer))
     }
 
     private fun loadMovie(movie: MovieModel) {
@@ -76,32 +88,7 @@ class DetailsFragment : Fragment() {
 
     private fun watchTrailer(button: View) {
         val movie = movieModel ?: return
-        context?.let {
-            val videoDao = AppDatabase.getInstance(it)?.videoDao()
-            val videoModel = videoDao?.getVideo(movie.id)
-            if (videoModel != null) {
-                playTrailer(videoModel.key)
-                return
-            }
-            trailerProgress.visibility = View.VISIBLE
-            RestClient.moviesClient.loadMovieTrailer(movie.id).enqueue(object : Callback<VideosListResult> {
-                override fun onFailure(call: Call<VideosListResult>, t: Throwable) {
-                    trailerProgress.visibility = View.GONE
-                    Toast.makeText(context, "Can't load trailer url", Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onResponse(call: Call<VideosListResult>, response: Response<VideosListResult>) {
-                    trailerProgress.visibility = View.GONE
-                    val video = response.body()?.toVideoModel()
-                    if (video != null) {
-                        videoDao?.insert(video)
-                        playTrailer(video.key)
-                    } else {
-                        Toast.makeText(it, "Could not load trailer", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            })
-        }
+        detailsViewModel.fetchTrailer(movie.id)
     }
 
     private fun playTrailer(key: String) {
@@ -115,6 +102,10 @@ class DetailsFragment : Fragment() {
         context?.let {
             DownloadActivity.startActivity(it, movie)
         }
+    }
+
+    private fun showButtonLoading(loading: Boolean) {
+        trailerProgress.visibility = if (loading) View.VISIBLE else View.GONE
     }
 
 }

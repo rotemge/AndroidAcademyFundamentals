@@ -14,7 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.android.academy.MovieModel
+import com.android.academy.model.MovieModel
 import com.android.academy.R
 import kotlinx.android.synthetic.main.activity_download.*
 

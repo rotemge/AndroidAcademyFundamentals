@@ -9,7 +9,8 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_movies.*
+import com.android.academy.model.MovieModel
+import com.android.academy.model.MoviesContent
 
 class MoviesFragment : Fragment(), OnMovieClickListener {
 
@@ -18,7 +19,7 @@ class MoviesFragment : Fragment(), OnMovieClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_movies, container, false)
+        val view = inflater.inflate(R.layout.fragment_movies, container, false)
         initRecyclerView(view.findViewById(R.id.rvMoviesList))
         return view
     }

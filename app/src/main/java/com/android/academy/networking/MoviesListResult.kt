@@ -1,6 +1,6 @@
 package com.android.academy.networking
 
-import com.android.academy.MovieModel
+import com.android.academy.model.MovieModel
 import com.google.gson.annotations.SerializedName
 
 data class MoviesListResult(

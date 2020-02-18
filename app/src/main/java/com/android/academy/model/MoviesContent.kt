@@ -1,4 +1,4 @@
-package com.android.academy
+package com.android.academy.model
 
 import com.android.academy.networking.MoviesListResult
 import com.android.academy.networking.toMovieModel

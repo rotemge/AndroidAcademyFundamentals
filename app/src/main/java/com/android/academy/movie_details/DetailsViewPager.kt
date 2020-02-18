@@ -1,4 +1,4 @@
-package com.android.academy
+package com.android.academy.movie_details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.android.academy.model.MoviesContent
+import com.android.academy.R
 
-class DetailsViewPager: Fragment() {
+class DetailsViewPager : Fragment() {
 
     companion object {
 
@@ -47,7 +49,8 @@ class DetailsViewPager: Fragment() {
 
         override fun getItemCount(): Int = MoviesContent.getCount()
 
-        override fun createFragment(position: Int): Fragment = DetailsFragment.newInstance(MoviesContent.getMovie(position))
+        override fun createFragment(position: Int): Fragment =
+            DetailsFragment.newInstance(MoviesContent.getMovie(position))
 
     }
 

@@ -1,6 +1,6 @@
 package com.android.academy.networking
 
-import com.android.academy.database.VideoModel
+import com.android.academy.model.VideoModel
 import com.google.gson.annotations.SerializedName
 
 data class VideosListResult(

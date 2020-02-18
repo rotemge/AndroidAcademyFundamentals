@@ -10,9 +10,12 @@ import com.android.academy.async_counter.AsyncTaskActivity
 import com.android.academy.async_counter.ThreadsActivity
 import com.android.academy.bg_service.BGServiceActivity
 import com.android.academy.bg_service.WorkManagerActivity
-import com.android.academy.database.AppDatabase
+import com.android.academy.database.DatabaseModule
+import com.android.academy.model.MovieModel
+import com.android.academy.model.MoviesContent
+import com.android.academy.movie_details.DetailsViewPager
 import com.android.academy.networking.MoviesListResult
-import com.android.academy.networking.RestClient
+import com.android.academy.networking.NetworkModule
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,7 +24,6 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity(), OnMovieClickListener {
 
     companion object {
-        private val ACTIVITY_TAG = MainActivity::class.java.simpleName
         private const val MOVIES_FRAGMENT_TAG = "MOVIES_FRAGMENT_TAG"
     }
 
@@ -30,20 +32,23 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().add(R.id.activity_main_frame, MoviesFragment(), MOVIES_FRAGMENT_TAG).commit()
+            supportFragmentManager.beginTransaction()
+                .add(R.id.activity_main_frame, MoviesFragment(), MOVIES_FRAGMENT_TAG).commit()
             loadMovies()
         }
     }
 
     private fun loadMovies() {
-        val cachedMovies = AppDatabase.getInstance(this)?.movieDao()?.getAll()
-        if (!cachedMovies.isNullOrEmpty()) {
-            MoviesContent.fromList(cachedMovies)
-            findMoviesFragment()?.updateList()
+        AppExecutors.diskIO.execute {
+            val cachedMovies = DatabaseModule.movieDao?.getAll()
+            if (!cachedMovies.isNullOrEmpty()) {
+                MoviesContent.fromList(cachedMovies)
+                findMoviesFragment()?.updateList()
+            }
         }
 
 
-        RestClient.moviesClient.loadPopularMovies().enqueue(object : Callback<MoviesListResult> {
+        NetworkModule.moviesClient.loadPopularMovies().enqueue(object : Callback<MoviesListResult> {
             override fun onFailure(call: Call<MoviesListResult>, t: Throwable) {
                 Toast.makeText(this@MainActivity, "Could not load movies", Toast.LENGTH_SHORT).show()
             }
@@ -52,8 +57,10 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
                 if (response.isSuccessful) {
                     response.body()?.let(MoviesContent::fromResults)
                     findMoviesFragment()?.updateList()
-                    AppDatabase.getInstance(this@MainActivity)?.movieDao()?.deleteAll()
-                    AppDatabase.getInstance(this@MainActivity)?.movieDao()?.insertAll(MoviesContent.getMovies())
+                    AppExecutors.diskIO.execute {
+                        DatabaseModule.movieDao?.deleteAll()
+                        DatabaseModule.movieDao?.insertAll(MoviesContent.getMovies())
+                    }
                 }
             }
         })
@@ -86,7 +93,7 @@ class MainActivity : AppCompatActivity(), OnMovieClickListener {
             true
         }
         R.id.action_delete_movies_db -> {
-            AppDatabase.getInstance(this)?.movieDao()?.deleteAll()
+            DatabaseModule.movieDao?.deleteAll()
             Toast.makeText(this, "Deleting movies list from DB", Toast.LENGTH_SHORT).show()
             true
         }

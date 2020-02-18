@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.android.academy.MovieModel
+import com.android.academy.model.MovieModel
 
 
 @Dao

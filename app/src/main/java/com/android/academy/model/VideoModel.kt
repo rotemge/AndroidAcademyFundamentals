@@ -1,4 +1,4 @@
-package com.android.academy.database
+package com.android.academy.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
