@@ -15,8 +15,7 @@ import kotlinx.android.synthetic.main.item_movie.view.*
 class MoviesViewAdapter(context: Context, private val movieClickListener: OnMovieClickListener) :
     RecyclerView.Adapter<MoviesViewAdapter.MovieItemViewHolder>() {
 
-    private val layoutInflater: LayoutInflater =
-        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
     private val asyncListDiffer = AsyncListDiffer<MovieModel>(this, MoviesDiffUtilCallback())
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieItemViewHolder {
@@ -59,7 +58,6 @@ class MoviesViewAdapter(context: Context, private val movieClickListener: OnMovi
         override fun areItemsTheSame(oldItem: MovieModel, newItem: MovieModel): Boolean {
             // As we don’t have Unique Ids
             return oldItem.hashCode() == newItem.hashCode()
-
         }
 
         override fun areContentsTheSame(oldItem: MovieModel, newItem: MovieModel): Boolean {
@@ -68,7 +66,6 @@ class MoviesViewAdapter(context: Context, private val movieClickListener: OnMovi
                     && oldItem.releaseDate == newItem.releaseDate
                     && oldItem.posterImage == newItem.posterImage
                     && oldItem.headerImage == newItem.headerImage
-
         }
     }
 }
